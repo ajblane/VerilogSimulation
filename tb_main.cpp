@@ -1,4 +1,4 @@
-#include "Vsingle_clk_ram.h"
+#include "Vdemo_axi_memory.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
@@ -6,7 +6,7 @@ int main(int argc, char **argv, char **env)
 {
     int clk;
     Verilated::commandArgs(argc, argv);
-    Vsingle_clk_ram *top = new Vsingle_clk_ram;
+    Vdemo_axi_memory *top = new Vdemo_axi_memory;
     Verilated::traceEverOn(true);
     VerilatedVcdC *tfp = new VerilatedVcdC;
     top->trace(tfp, 99);

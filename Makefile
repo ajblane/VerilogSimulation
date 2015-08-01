@@ -1,12 +1,12 @@
-TOP = single_clk_ram
+TOP = demo_axi_memory
 TESTBENCH = tb_main.cpp
 VCD = trace.vcd
 
 all: compile run simulation
 
 compile:
-	verilator -Wall --cc --trace ${TOP}.sv --exe ${TESTBENCH}
-	make -j -C obj_dir/ -f V${TOP}.mk V${TOP}
+	verilator  --cc --trace ${TOP}.sv --exe ${TESTBENCH} 
+	make -j -C obj_dir/ -f V${TOP}.mk V${TOP} 
 
 run:
 	obj_dir/V${TOP}
