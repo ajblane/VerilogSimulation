@@ -12,7 +12,7 @@ run:
 	obj_dir/V${TOP}
 
 simulation:
-	gtkwave ${VCD}
+	gtkwave ${VCD} &
 
 clean:
 	rm -r obj_dir/
