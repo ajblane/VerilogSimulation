@@ -2,7 +2,7 @@ TOP = demo_axi_memory
 TESTBENCH = tb_main.cpp
 VCD = trace.vcd
 
-all: compile run simulation
+all: compile run 
 
 compile:
 	verilator  --cc --trace ${TOP}.sv --exe ${TESTBENCH} 
@@ -11,7 +11,7 @@ compile:
 run:
 	obj_dir/V${TOP}
 
-simulation:
+gtkwave:
 	gtkwave ${VCD} &
 
 clean:

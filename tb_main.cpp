@@ -56,6 +56,8 @@ int main(int argc, char **argv, char **env)
     int eval_num = 0;
     int i = 0;
     Verilated::commandArgs(argc, argv);
+    //Enable debugging at a specified level
+    Verilated::debug(0);
     Verilated::traceEverOn(true);
     VerilatedVcdC *tfp = new VerilatedVcdC;
     Vdemo_axi_memory *top = new Vdemo_axi_memory;
