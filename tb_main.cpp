@@ -55,32 +55,16 @@ int main(int argc, char **argv, char **env)
 {
     int eval_num = 0;
     int i = 0;
-    Verilated::commandArgs(argc, argv);
-    //Enable debugging at a specified level
-    Verilated::debug(0);
+    Verilated::commandArgs(argc, argv); 
+    Verilated::debug(0); //Enable debugging at a specified level
     Verilated::traceEverOn(true);
+    Verilated::randReset(2); //Initialize all registers to random
+
     VerilatedVcdC *tfp = new VerilatedVcdC;
     Vdemo_axi_memory *top = new Vdemo_axi_memory;
     top->trace(tfp, 99);
-    tfp->open("trace.vcd");
-    //init axi waddr bus
-    top->axs_awid       =  0;
-    top->axs_awaddr     =  0;
-    top->axs_awlen      =  0;
-    top->axs_awsize     =  0;
-    top->axs_awburst    =  0; 
-    top->axs_awlock     =  0; 
-    top->axs_awcache    =  0; 
-    top->axs_awprot     =  0;
-    top->axs_awvalid    =  0;
-    //init axi wdata bus
-    top->axs_wid    = 0;
-    top->axs_wdata  = 0;
-    top->axs_wstrb  = 0;
-    top->axs_wlast  = 0;
-    top->axs_wvalid = 0;  
-
-   
+    tfp->open("trace.vcd");   
+    
     top->reset_n = 0;   
     for(i = 0 ; i < 10 ; i++){ 
 	CYCLE();
