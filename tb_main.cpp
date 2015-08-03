@@ -70,9 +70,12 @@ int main(int argc, char **argv, char **env)
 	CYCLE();
     }	
     top->reset_n = 1;
+    top->axs_rready = 1;
+    
     CYCLE();
-    for(i = 0; i < 20 ; i++){
-        if(i == 0){
+    for(i = 0; i < 50 ; i++){
+        // master writes data into slave        
+	if(i == 0){
             top->axs_awid     = 1;
    	    top->axs_awaddr   = 53;
             top->axs_awlen    = 0;
@@ -100,7 +103,25 @@ int main(int argc, char **argv, char **env)
            CYCLE();
 	   top->axs_wvalid = 0;
            top->axs_wlast  = 0;   	
-	}		 
+	}
+	// master reads data from slave     
+        if(i == 20){
+	    top->axs_arid     = 1;
+   	    top->axs_araddr   = 53;
+            top->axs_arlen    = 0;
+            top->axs_arsize   = 2;
+            top->axs_arburst  = 1; //incrementing address burst
+            top->axs_arlock   = 0; //normal access
+            top->axs_arcache  = 0; 
+            top->axs_arprot   = 2; //normal, non-secure data access
+            top->axs_arvalid  = 1;
+	    CYCLE();			
+	}	
+	if(top->axs_arready){
+	   CYCLE();
+	   top->axs_arvalid = 0;
+	}
+		 
 	CYCLE();
     }  
     
