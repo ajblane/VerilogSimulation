@@ -18,6 +18,10 @@ Build verilog simulation:
 
 	$make
 
+Debug with tracing wave
+	
+	$make gtkwave
+
 #Licensing: 
 
 GNU GPL v2
